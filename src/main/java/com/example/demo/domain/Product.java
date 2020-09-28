@@ -13,6 +13,7 @@ public class Product {
         this.id = id;
         this.name = name;
         this.price = price;
+
     }
 
     public String getId() {
@@ -21,6 +22,7 @@ public class Product {
 
     public void setId(String id) {
         this.id = id;
+
     }
 
     public String getName() {
