@@ -1,7 +1,7 @@
 package com.example.demo.domain;
 
 public enum PublishedStatus {
-    Draft(0), Published(1);
+    DRAFT(0), PUBLISHED(1);
 
     private int status;
 
@@ -9,7 +9,7 @@ public enum PublishedStatus {
         this.status = status;
     }
 
-    public int Status() {
+    public int status() {
         return status;
     }
 

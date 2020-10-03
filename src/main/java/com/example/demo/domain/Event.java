@@ -6,7 +6,7 @@ public class Event {
     private long id;
     private String title;
     private String description;
-    private PublishedStatus publishedStatus = PublishedStatus.Draft;
+    private PublishedStatus publishedStatus = PublishedStatus.DRAFT;
     private long version;
     private Instant createdAt;
     private Instant updatedAt;

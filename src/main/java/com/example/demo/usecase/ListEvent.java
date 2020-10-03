@@ -4,24 +4,21 @@ import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.example.demo.domain.Event;
-import com.example.demo.domain.ListEventUsecase;
+import com.example.demo.domain.*;
 
-public class ListEvent implements ListEventUsecase {
+public class ListEvent implements EventUsecase {
 
     @Override
-    public List<Event> ListEvents() {
-        List<Event> events = new ArrayList<Event>();
+    public List<Event> listEvents() {
+        List<Event> events = new ArrayList<>();
 
-        events.add(new Event() {
-            {
-                setId(1);
-                setTitle("Golang Taipei online");
-                setDescription("description");
-                setCreatedAt(Instant.now());
-                setUpdatedAt(Instant.now());
-            }
-        });
+        Event evt = new Event();
+        evt.setId(1);
+        evt.setTitle("Golang Taipei online");
+        evt.setDescription("description");
+        evt.setCreatedAt(Instant.now());
+        evt.setUpdatedAt(Instant.now());
+        events.add(evt);
 
         return events;
     }

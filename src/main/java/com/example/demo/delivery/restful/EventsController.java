@@ -4,8 +4,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
-import com.example.demo.domain.Event;
-import com.example.demo.domain.ListEventUsecase;
+import com.example.demo.domain.*;
 import com.example.demo.usecase.ListEvent;
 
 import org.springframework.http.MediaType;
@@ -15,11 +14,21 @@ import org.springframework.http.MediaType;
 public class EventsController {
 
     @GetMapping
-    public ResponseEntity<List<Event>> listEvents() {
-        ListEventUsecase usecase = new ListEvent();
+    public ResponseEntity<APICollection> listEvents() {
+        APICollection result = new APICollection();
 
-        List<Event> events = usecase.ListEvents();
+        EventUsecase usecase = new ListEvent();
+        List<Event> events = usecase.listEvents();
 
-        return ResponseEntity.ok().body(events);
+        result.data = events;
+        result.metadata.put("key", "abc");
+
+        return ResponseEntity.ok().body(result);
+    }
+
+    @PostMapping
+    public ResponseEntity<Event> createEvent(@RequestBody Event request) {
+
+        return ResponseEntity.ok().body(request);
     }
 }
