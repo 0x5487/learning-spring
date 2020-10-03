@@ -2,10 +2,9 @@ package com.example.demo.delivery.restful;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import java.util.List;
 
 import com.example.demo.domain.*;
-import com.example.demo.usecase.ListEvent;
+import com.example.demo.usecase.*;
 
 import org.springframework.http.MediaType;
 
@@ -15,10 +14,10 @@ public class EventsController {
 
     @GetMapping
     public ResponseEntity<APICollection> listEvents() {
-        APICollection result = new APICollection();
+        var result = new APICollection();
 
-        EventUsecase usecase = new ListEvent();
-        List<Event> events = usecase.listEvents();
+        var usecase = new ListEventUsecase();
+        var events = usecase.listEvents();
 
         result.data = events;
         result.metadata.put("key", "abc");
@@ -30,5 +29,11 @@ public class EventsController {
     public ResponseEntity<Event> createEvent(@RequestBody Event request) {
 
         return ResponseEntity.ok().body(request);
+    }
+
+    @GetMapping("/error")
+    public String getLiveList(@RequestParam Long status) {
+        status.toString();
+        return "my error";
     }
 }

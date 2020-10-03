@@ -6,18 +6,15 @@ import java.util.List;
 
 import com.example.demo.domain.*;
 
-public class ListEvent implements EventUsecase {
+public class ListEventUsecase {
 
-    @Override
     public List<Event> listEvents() {
         List<Event> events = new ArrayList<>();
 
-        Event evt = new Event();
-        evt.setId(1);
-        evt.setTitle("Golang Taipei online");
-        evt.setDescription("description");
-        evt.setCreatedAt(Instant.now());
-        evt.setUpdatedAt(Instant.now());
+        var utcNow = Instant.now();
+        Event evt = Event.builder().id(1).title("Golang Taipei online").description("description").createdAt(utcNow)
+                .updatedAt(utcNow).build();
+
         events.add(evt);
 
         return events;
