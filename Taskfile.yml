@@ -9,11 +9,14 @@ env:
 tasks:
   build:
     cmds:
-      - mvnw clean compile
+      - mvnw clean package -DskipTests
 
   run:
+    dir: target
     cmds:
-      - mvnw clean spring-boot:run -Dspring-boot.run.jvmArguments="-Denv=dev -Dapollo.configService=http://localhost:8080"
+      - task: build
+      - java -Denv=dev -Dapollo.configService=http://localhost:8080 -jar demo.jar 
+      #- mvnw clean spring-boot:run -Dspring-boot.run.jvmArguments="-Denv=dev -Dapollo.configService=http://localhost:8080"
 
 
   
