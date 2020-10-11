@@ -1,3 +1,12 @@
+app:
+  id: "SampleApp"
+
+apollo:
+  bootstrap:
+    enabled: true
+    # will inject 'application' and 'TEST1.apollo' namespaces in bootstrap phase
+    namespaces: application
+  configService: http://localhost:8080
 
 spring:
   datasource:
@@ -5,3 +14,6 @@ spring:
      username: root
      password: root
      driver-class-name: com.mysql.cj.jdbc.Driver
+
+server:
+  port : 10080
