@@ -3,6 +3,8 @@ package com.example.demo.delivery.restful;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.logging.Logger;
+
+import com.example.demo.config.AppConfig;
 import com.example.demo.config.JavaConfigBean;
 import com.example.demo.domain.*;
 import com.example.demo.usecase.*;
@@ -19,7 +21,7 @@ public class EventsController {
     private Logger logger = Logger.getLogger(this.getClass().getName());
 
     @Autowired
-    private JavaConfigBean configBean;
+    private AppConfig configBean;
 
     @GetMapping
     public ResponseEntity<APICollection> listEvents() {
@@ -32,7 +34,8 @@ public class EventsController {
         result.metadata.put("key", "abc");
 
         // get config
-        logger.info("answer:" + configBean.getTimeout());
+        logger.info("timeout:" + configBean.javaConfigBean().getTimeout());
+        logger.info("url:" + configBean.getBifrstConfig().getProperty("database.url", "default_url"));
 
         return ResponseEntity.ok().body(result);
     }

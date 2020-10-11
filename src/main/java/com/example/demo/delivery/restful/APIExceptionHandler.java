@@ -9,7 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @ControllerAdvice
-public class RestfulApiExceptionHandler {
+public class APIExceptionHandler {
 
     // 這裡處理沒有被上一個方法處理的異常，通常在最後的方法處理最大的Exception，保證兜底
     @ExceptionHandler(value = Exception.class)

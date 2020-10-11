@@ -5,7 +5,7 @@ apollo:
   bootstrap:
     enabled: true
     # will inject 'application' and 'TEST1.apollo' namespaces in bootstrap phase
-    namespaces: application
+    namespaces: application,bifrost.yml
   configService: http://localhost:8080
 
 spring:

@@ -15,7 +15,7 @@ public class LoggingInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
             throws Exception {
-        logger.info(handler.getClass().getName() + " do preHandle...");
+        logger.info(handler.getClass().getName() + " do preHandle...你好");
         return true;
     }
 
