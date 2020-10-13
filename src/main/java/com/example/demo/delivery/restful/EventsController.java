@@ -23,19 +23,22 @@ public class EventsController {
     @Autowired
     private AppConfig configBean;
 
+    @Autowired
+    private ListEventUsecase usecase;
+
     @GetMapping
     public ResponseEntity<APICollection> listEvents() {
+        logger.info("=====> begin list events");
         var result = new APICollection();
 
-        var usecase = new ListEventUsecase();
         var events = usecase.listEvents();
 
         result.data = events;
         result.metadata.put("key", "abc");
 
         // get config
-        logger.info("timeout:" + configBean.javaConfigBean().getTimeout());
-        logger.info("url:" + configBean.getBifrstConfig().getProperty("database.url", "default_url"));
+        // logger.info("timeout:" + configBean.javaConfigBean().getTimeout());
+        // logger.info("url:" + configBean.getBifrstConfig().getProperty("database.url", "default_url"));
 
         return ResponseEntity.ok().body(result);
     }

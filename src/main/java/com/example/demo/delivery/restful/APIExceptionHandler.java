@@ -17,7 +17,7 @@ public class APIExceptionHandler {
     public ResponseEntity<Map<String, Object>> exceptionHandler(HttpServletRequest request, Exception ex) {
         Map<String, Object> error = new HashMap<>();
         error.put("status", 500);
-        error.put("message", "系統錯誤");
+        error.put("message", ex.toString());
 
         return ResponseEntity.status(500).body(error);
     }

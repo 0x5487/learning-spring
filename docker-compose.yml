@@ -5,30 +5,22 @@ services:
     image: nobodyiam/apollo-quick-start
     container_name: apollo-quick-start
     depends_on:
-      - apollo-db
+      - mysql
     ports:
       - "8080:8080"
       - "8070:8070"
     links:
-      - apollo-db
+      - mysql
 
-  apollo-db:
-    image: mysql:5.7
-    container_name: apollo-db
+  mysql:
+    image: mysql:8.0
     environment:
       TZ: Asia/Shanghai
-      MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
-    depends_on:
-      - apollo-dbdata
+      MYSQL_ROOT_PASSWORD: 'root'
     ports:
-      - "13306:3306"
+      - "3306:3306"
     volumes:
       - ./sql:/docker-entrypoint-initdb.d
-    volumes_from:
-      - apollo-dbdata
+      - ./mysql:/var/lib/mysql
 
-  apollo-dbdata:
-    image: alpine:latest
-    container_name: apollo-dbdata
-    volumes:
-      - /var/lib/mysql
+
