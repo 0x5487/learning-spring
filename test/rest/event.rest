@@ -1,0 +1,6 @@
+GET http://localhost:10080/events
+
+
+
+### Health check
+GET http://localhost:10080/actuator/health
