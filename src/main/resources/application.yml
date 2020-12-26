@@ -26,3 +26,9 @@ logging:
       spring:
         ibatis:
           UserMapper: debug
+
+
+management:
+  endpoint:
+    health:
+      show-details: always
