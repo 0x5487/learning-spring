@@ -2,6 +2,9 @@ package com.example.demo.delivery.restful;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import lombok.extern.slf4j.Slf4j;
+
 import java.util.logging.Logger;
 
 import com.example.demo.config.AppConfig;
@@ -16,9 +19,9 @@ import org.springframework.http.MediaType;
 
 @EnableApolloConfig
 @RestController
+@Slf4j
 @RequestMapping(value = "/events", produces = MediaType.APPLICATION_JSON_VALUE)
 public class EventsController {
-    private Logger logger = Logger.getLogger(this.getClass().getName());
 
     @Autowired
     private AppConfig configBean;
@@ -26,9 +29,9 @@ public class EventsController {
     @Autowired
     private ListEventUsecase usecase;
 
-    @GetMapping
+    @GetMapping("")
     public ResponseEntity<APICollection> listEvents() {
-        logger.info("=====> begin list events");
+        log.info("=====> begin list events");
         var result = new APICollection();
 
         var events = usecase.listEvents();
@@ -43,7 +46,7 @@ public class EventsController {
         return ResponseEntity.ok().body(result);
     }
 
-    @PostMapping
+    @PostMapping("")
     public ResponseEntity<Event> createEvent(@RequestBody Event request) {
 
         return ResponseEntity.ok().body(request);
@@ -53,5 +56,15 @@ public class EventsController {
     public String getLiveList(@RequestParam Long status) {
         status.toString();
         return "my error";
+    }
+
+
+    @GetMapping("/logging")
+    public String printLog() {
+        log.debug("hello world");
+        log.info("hello world");
+        log.warn("hello world");
+        log.error("hello world");
+        return "done";
     }
 }
